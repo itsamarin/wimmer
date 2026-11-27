@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { IdealoChart } from "@/components/charts/IdealoChart";
 import { PlatformCommissionPanel } from "@/components/dashboard/PlatformCommissionPanel";
 import { CompetitiveAlertsPanel } from "@/components/dashboard/CompetitiveAlertsPanel";
+import { ProcurementDecisionsPanel } from "@/components/dashboard/ProcurementDecisionsPanel";
 import { DEMO_PLATFORM_COMMISSIONS } from "@/lib/demo-data";
 import { TrendingUp, TrendingDown, Package, ExternalLink } from "lucide-react";
 
@@ -93,6 +94,8 @@ export default function SupplierPage() {
             <PlatformCommissionPanel />
           </div>
         </div>
+
+        <ProcurementDecisionsPanel />
 
         <CompetitiveAlertsPanel />
       </div>
