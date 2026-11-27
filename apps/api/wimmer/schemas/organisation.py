@@ -1,5 +1,7 @@
-from pydantic import BaseModel, field_validator
 import re
+import uuid
+
+from pydantic import BaseModel, field_validator
 
 
 class OrganisationCreate(BaseModel):
@@ -16,7 +18,7 @@ class OrganisationCreate(BaseModel):
 
 
 class OrganisationResponse(BaseModel):
-    id: str
+    id: uuid.UUID
     name: str
     slug: str
     description: str | None

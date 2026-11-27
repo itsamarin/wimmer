@@ -1,12 +1,13 @@
+import uuid
 from datetime import datetime
 
 from pydantic import BaseModel
 
 
 class RecommendationResponse(BaseModel):
-    id: str
-    property_id: str
-    organisation_id: str
+    id: uuid.UUID
+    property_id: uuid.UUID
+    organisation_id: uuid.UUID
     title: str
     description: str
     category: str

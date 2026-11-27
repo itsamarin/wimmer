@@ -31,7 +31,10 @@ def get_organisation(org_id: uuid.UUID, current_user: CurrentUser, db: DB):
     org = db.query(__import__("wimmer.db.models.organisation", fromlist=["Organisation"]).Organisation).filter_by(id=org_id).first()
     if not org:
         raise HTTPException(status_code=404, detail="Organisation not found")
-    svc.assert_member(org_id, current_user.id)
+    try:
+        svc.assert_member(org_id, current_user.id)
+    except PermissionError:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not a member of this organisation")
     return org
 
 

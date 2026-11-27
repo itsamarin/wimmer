@@ -35,7 +35,8 @@ def _normalise_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 def _validate_row(row: pd.Series, idx: int) -> tuple[DailyPerformance | None, str | None]:
     try:
-        row_date = pd.to_datetime(row["date"]).date()
+        raw = str(row["date"]).strip()
+        row_date = date.fromisoformat(raw[:10])
     except Exception:
         return None, f"Row {idx}: invalid date '{row.get('date')}'"
 

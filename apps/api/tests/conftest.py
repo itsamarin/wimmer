@@ -1,24 +1,41 @@
 """Test configuration and fixtures."""
+import os
+
+# Must be set before any wimmer module is imported — session.py creates the engine at import time
+os.environ["DATABASE_URL"] = "sqlite:///./test_wimmer.db"
+os.environ.setdefault("SECRET_KEY", "test-secret-key-for-tests-only")
+os.environ.setdefault("LLM_PROVIDER", "mock")
+
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 from wimmer.db.base import Base
 from wimmer.db.session import get_db
 from wimmer.main import app
 
-SQLALCHEMY_TEST_URL = "sqlite:///./test.db"
-
+SQLALCHEMY_TEST_URL = "sqlite:///./test_wimmer.db"
 engine_test = create_engine(SQLALCHEMY_TEST_URL, connect_args={"check_same_thread": False})
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine_test)
 
 
 @pytest.fixture(scope="session", autouse=True)
 def create_tables():
+    Base.metadata.drop_all(bind=engine_test)
     Base.metadata.create_all(bind=engine_test)
     yield
     Base.metadata.drop_all(bind=engine_test)
+
+
+@pytest.fixture(autouse=True)
+def clean_tables(create_tables):
+    """Delete all data between tests for isolation."""
+    yield
+    with engine_test.connect() as conn:
+        for table in reversed(Base.metadata.sorted_tables):
+            conn.execute(table.delete())
+        conn.commit()
 
 
 @pytest.fixture
@@ -27,7 +44,6 @@ def db():
     try:
         yield session
     finally:
-        session.rollback()
         session.close()
 
 

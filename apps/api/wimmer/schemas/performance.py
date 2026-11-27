@@ -1,11 +1,12 @@
+import uuid
 from datetime import date
 
 from pydantic import BaseModel, field_validator
 
 
 class DailyPerformanceResponse(BaseModel):
-    id: str
-    property_id: str
+    id: uuid.UUID
+    property_id: uuid.UUID
     date: date
     rooms_available: int
     rooms_sold: int
@@ -30,7 +31,7 @@ class ImportResult(BaseModel):
 
 
 class PerformanceSummary(BaseModel):
-    property_id: str
+    property_id: uuid.UUID
     period_start: date
     period_end: date
     avg_occupancy: float

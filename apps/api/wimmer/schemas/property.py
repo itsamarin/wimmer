@@ -1,3 +1,5 @@
+import uuid
+
 from pydantic import BaseModel
 
 
@@ -16,8 +18,8 @@ class PropertyCreate(BaseModel):
 
 
 class PropertyResponse(BaseModel):
-    id: str
-    organisation_id: str
+    id: uuid.UUID
+    organisation_id: uuid.UUID
     name: str
     slug: str
     property_type: str

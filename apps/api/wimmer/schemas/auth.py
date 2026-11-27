@@ -1,3 +1,5 @@
+import uuid
+
 from pydantic import BaseModel, EmailStr, field_validator
 
 
@@ -26,7 +28,7 @@ class TokenResponse(BaseModel):
 
 
 class UserResponse(BaseModel):
-    id: str
+    id: uuid.UUID
     email: str
     full_name: str
     is_active: bool
