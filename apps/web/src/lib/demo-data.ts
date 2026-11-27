@@ -267,57 +267,118 @@ export function generateDemoIdealoData(months = 12) {
   return data;
 }
 
+// Delivery platforms (sell side) — where the restaurant sells food to end customers
 export const DEMO_PLATFORM_COMMISSIONS = [
   {
     platform: "Lieferando",
     commission_pct: 30,
     avg_basket: 32.5,
-    monthly_orders: 980,
-    monthly_gmv: 31850,
+    monthly_orders: 1240,
+    monthly_gmv: 40300,
     color: "#ef4444",
   },
   {
     platform: "Wolt",
     commission_pct: 25,
     avg_basket: 28.8,
-    monthly_orders: 620,
-    monthly_gmv: 17856,
+    monthly_orders: 680,
+    monthly_gmv: 19584,
     color: "#f59e0b",
   },
   {
-    platform: "Direct (idealo)",
-    commission_pct: 8,
-    avg_basket: 38.80,
-    monthly_orders: 2240,
-    monthly_gmv: 86912,
-    color: "#10b981",
+    platform: "Direct (own website)",
+    commission_pct: 2,
+    avg_basket: 36.0,
+    monthly_orders: 420,
+    monthly_gmv: 15120,
+    color: "#6366f1",
   },
 ];
 
+// idealo.de procurement summary (buy side) — what Wimmer POS spends via idealo.de
+export const DEMO_IDEALO_PROCUREMENT_SUMMARY = {
+  total_spend_mtd: 8_240,
+  total_saved_mtd: 1_682,
+  avg_saving_pct: 16.9,
+  orders_placed: 47,
+  best_saving_product: "Extra Virgin Olive Oil 5L (−19.9%)",
+  spend_vs_lm: +12.4,
+  saved_vs_lm: +18.6,
+};
+
+export function generateDemoProcurementSavings(months = 12) {
+  const data = [];
+  const base = new Date();
+  base.setDate(1);
+  for (let i = months - 1; i >= 0; i--) {
+    const d = new Date(base);
+    d.setMonth(d.getMonth() - i);
+    const baseSpend  = 5800 + (months - i) * 180 + (Math.random() - 0.5) * 400;
+    const savingPct  = 0.13 + (months - i) * 0.003 + (Math.random() - 0.5) * 0.02;
+    const saved      = Math.round(baseSpend * savingPct);
+    data.push({
+      month: d.toLocaleDateString("en-DE", { month: "short", year: "2-digit" }),
+      spend:  Math.round(baseSpend),
+      saved,
+      orders: Math.round(28 + (months - i) * 1.2 + (Math.random() - 0.5) * 4),
+    });
+  }
+  return data;
+}
+
+// Procurement market alerts — price intelligence from idealo.de
+export const DEMO_PROCUREMENT_ALERTS = [
+  {
+    id: "pa1",
+    severity: "high",
+    title: "Olive oil prices rising — bulk buy window closing",
+    description: "idealo.de price index for Extra Virgin Olive Oil 5L has risen 8% over the past 3 weeks due to Mediterranean harvest shortage. Current idealo.de price of €9.45/unit is forecast to reach €11.20 by mid-December. Wimmer POS recommends ordering now.",
+    metric: "+8% trend",
+    action: "Order 24 units now via idealo.de",
+  },
+  {
+    id: "pa2",
+    severity: "medium",
+    title: "Callebaut chocolate bulk deal — 3 days remaining",
+    description: "idealo.de is showing a limited-time bulk promotion on Callebaut 70% 2.5kg blocks at €35.20 (normally €41.20). The deal expires in 3 days. Your POS forecasts Christmas dessert demand requiring 15 blocks — this order would save €90.",
+    metric: "−14.6% limited",
+    action: "Lock in 15 units before deal expires",
+  },
+  {
+    id: "pa3",
+    severity: "low",
+    title: "Riesling Kabinett case price at 6-month low",
+    description: "The Riesling Kabinett case price on idealo.de has dropped to a 6-month low of €36.00/case. POS demand forecast shows December wine volume up 66%. This is an ideal time to stock up at the lowest available market price.",
+    metric: "6-month low",
+    action: "Pre-order 32 cases for December",
+  },
+];
+
+// Delivery market competitive alerts (sell side)
 export const DEMO_COMPETITIVE_ALERTS = [
   {
     id: "ca1",
-    severity: "low",
-    title: "Direct (idealo) now #1 revenue channel — €86,912 GMV",
-    description: "Direct orders via idealo.de overtook Lieferando as the top revenue channel this month with 2,240 orders and €86,912 GMV. At 8% commission vs Lieferando's 30%, net revenue from Direct is €79,959 — 2.8× more than Lieferando's €22,295 net.",
-    metric: "€79,959 net",
-    action: "Reinvest in idealo.de listing visibility",
+    severity: "high",
+    title: "Lieferando commission at 30% — highest cost channel",
+    description: "Lieferando charges 30% commission on €40,300 GMV this month — costing €12,090 in fees. Your own direct website (2% processing) generates €15,120 GMV at only €302 in fees. Shifting 20% of Lieferando volume to direct would save €2,358/month.",
+    metric: "€12,090 fees",
+    action: "Drive direct website orders",
   },
   {
     id: "ca2",
     severity: "medium",
-    title: "Lieferando commission costing €9,555/month in fees",
-    description: "Despite Lieferando accounting for only 25.9% of orders, it generates €9,555 in commissions — the highest fee of any single channel. Shifting a further 20% of Lieferando volume to Direct would save an additional €1,900/month.",
-    metric: "€9,555 fees",
-    action: "Run direct-order incentive campaign",
+    title: "Wolt competitor added 3 new listings in 1km radius",
+    description: "Three new restaurant listings within 1km on Wolt since last month. Market share pressure expected in the €25–35 avg basket segment.",
+    metric: "3 new rivals",
+    action: "Monitor Wolt basket size trend",
   },
   {
     id: "ca3",
-    severity: "medium",
-    title: "Wolt competitor added 3 new listings in 1km radius",
-    description: "Three new restaurant listings within 1km on Wolt since last month. Market share pressure expected in the €25–35 avg basket segment. Direct channel's higher avg basket (€38.80) provides natural differentiation.",
-    metric: "3 new rivals",
-    action: "Monitor Wolt basket size trend",
+    severity: "low",
+    title: "Direct website orders up 18% MoM",
+    description: "Own-website orders grew 18% this month vs last — the lowest-commission channel. At 2% processing fee vs 30% on Lieferando, every order shifted to direct saves €9.12 in fees on a €32 basket.",
+    metric: "+18% direct",
+    action: "Continue direct channel investment",
   },
 ];
 

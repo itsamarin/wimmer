@@ -2,7 +2,9 @@ import React from "react";
 import { TrendingUp, TrendingDown, Utensils, DollarSign, BarChart2, Users, Brain, CheckCircle, XCircle, MapPin } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 import { CoversChart } from "@/components/charts/CoversChart";
-import { DEMO_RESTAURANT_KPI_SUMMARY, DEMO_RESTAURANT_PROPERTIES, DEMO_RESTAURANT_SIGNALS, DEMO_RESTAURANT_RECOMMENDATIONS } from "@/lib/demo-data";
+import { PlatformCommissionPanel } from "@/components/dashboard/PlatformCommissionPanel";
+import { AlertsPanel } from "@/components/dashboard/CompetitiveAlertsPanel";
+import { DEMO_RESTAURANT_KPI_SUMMARY, DEMO_RESTAURANT_PROPERTIES, DEMO_RESTAURANT_SIGNALS, DEMO_RESTAURANT_RECOMMENDATIONS, DEMO_COMPETITIVE_ALERTS } from "@/lib/demo-data";
 import Link from "next/link";
 
 function Delta({ value }: { value: number }) {
@@ -201,6 +203,15 @@ export default function CustomerPage() {
           </div>
           <div className="col-span-1">
             <RestaurantsGrid />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-6">
+          <div className="col-span-2">
+            <AlertsPanel alerts={DEMO_COMPETITIVE_ALERTS} title="Delivery Channel Intelligence" />
+          </div>
+          <div className="col-span-1">
+            <PlatformCommissionPanel />
           </div>
         </div>
       </div>
