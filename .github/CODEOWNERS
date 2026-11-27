@@ -1,0 +1,60 @@
+# CODEOWNERS
+#
+# GitHub uses this file to determine who is requested for review when
+# a pull request modifies files matching these patterns.
+#
+# Format: <pattern> <owner> [<owner> ...]
+# Patterns are matched in order; the last matching pattern wins.
+# Owners are GitHub teams or usernames.
+#
+# GitHub usernames for each role will be assigned here once the team
+# has set up their GitHub accounts and the organisation's GitHub teams.
+#
+# Teams:
+#   @wimmer/engineering         — Technical Lead (Person 5)
+#   @wimmer/hospitality-product — Hospitality Lead (Person 1)
+#   @wimmer/operations          — Restaurant & Supply Chain Leads (Persons 2 & 3)
+#   @wimmer/commercial          — Retail Lead (Person 4)
+
+# Default owner — engineering reviews everything unless overridden below
+*                                               @wimmer/engineering
+
+# API and backend — engineering
+apps/api/                                       @wimmer/engineering
+
+# Frontend — engineering
+apps/web/                                       @wimmer/engineering
+
+# ML and forecasting — engineering + hospitality product (domain validation)
+ml/                                             @wimmer/engineering @wimmer/hospitality-product
+
+# Infrastructure and CI/CD — engineering
+infrastructure/                                 @wimmer/engineering
+.github/                                        @wimmer/engineering
+docker-compose.yml                              @wimmer/engineering
+
+# Integration connectors — engineering
+integrations/                                   @wimmer/engineering
+
+# Architecture and technical documentation — engineering
+docs/ARCHITECTURE.md                            @wimmer/engineering
+docs/DATABASE_SCHEMA.md                         @wimmer/engineering
+docs/API_SPEC.md                                @wimmer/engineering
+docs/AI_AGENT_DESIGN.md                         @wimmer/engineering
+docs/FORECASTING_DESIGN.md                      @wimmer/engineering
+docs/SECURITY.md                                @wimmer/engineering
+docs/MCP_INTEGRATION.md                         @wimmer/engineering
+docs/DEVELOPMENT_WORKFLOW.md                    @wimmer/engineering
+
+# Product and roadmap — hospitality product lead
+docs/PRODUCT_SPEC.md                            @wimmer/hospitality-product
+docs/ROADMAP.md                                 @wimmer/hospitality-product
+
+# Team structure — all leads
+docs/TEAM_STRUCTURE.md                          @wimmer/engineering @wimmer/hospitality-product
+
+# Industry discovery — all domain leads (each owns their section)
+docs/INDUSTRY_DISCOVERY.md                      @wimmer/hospitality-product @wimmer/operations @wimmer/commercial
+
+# Contributing guide — engineering (primary), hospitality product (product sections)
+CONTRIBUTING.md                                 @wimmer/engineering @wimmer/hospitality-product

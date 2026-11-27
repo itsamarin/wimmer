@@ -1,0 +1,88 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: wimmer_postgres
+    environment:
+      POSTGRES_USER: wimmer
+      POSTGRES_PASSWORD: wimmer
+      POSTGRES_DB: wimmer
+    ports:
+      - "5432:5432"
+    volumes:
+      - wimmer_postgres_data:/var/lib/postgresql/data
+      - ./infrastructure/docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wimmer -d wimmer"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - wimmer_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: wimmer_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - wimmer_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - wimmer_network
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: wimmer_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://wimmer:wimmer@postgres:5432/wimmer
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: dev-secret-key-change-in-production
+      ENVIRONMENT: development
+      LLM_PROVIDER: mock
+    volumes:
+      - ./apps/api:/app
+    command: uvicorn wimmer.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - wimmer_network
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile.dev
+    container_name: wimmer_web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    environment:
+      NEXT_PUBLIC_API_URL: http://api:8000
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+      - /app/.next
+    networks:
+      - wimmer_network
+
+volumes:
+  wimmer_postgres_data:
+  wimmer_redis_data:
+
+networks:
+  wimmer_network:
+    driver: bridge

@@ -1,0 +1,67 @@
+# Environment files — never commit
+.env
+.env.local
+.env.*.local
+.env.production
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+htmlcov/
+.coverage
+coverage.xml
+*.db
+
+# Node / Next.js
+node_modules/
+.next/
+.turbo/
+out/
+*.tsbuildinfo
+.npm/
+
+# Docker
+*.dockerignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Uploads
+uploads/
+/tmp/
+
+# Secrets
+*.pem
+*.key
+*.p12
+secrets/
+
+# Logs
+*.log
+logs/
+
+# ML
+ml/datasets/*.csv
+ml/datasets/*.parquet
+*.pkl
+*.joblib
+*.h5
+
+# Test artefacts
+test.db
+junit.xml
