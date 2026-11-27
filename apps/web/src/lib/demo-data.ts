@@ -828,3 +828,213 @@ export const DEMO_RECOMMENDATIONS = [
     created_at: new Date(Date.now() - 86400000).toISOString(),
   },
 ];
+
+// POS Tables
+export const DEMO_TABLES = [
+  // Main Floor
+  { id: "t1",  name: "T1",  section: "Main Floor",    capacity: 2, status: "occupied",  covers_seated: 2, seated_at: "18:45", server: "Anna S.",   order_value: 68,  order_status: "mains" },
+  { id: "t2",  name: "T2",  section: "Main Floor",    capacity: 4, status: "occupied",  covers_seated: 4, seated_at: "19:00", server: "Max K.",    order_value: 196, order_status: "starters" },
+  { id: "t3",  name: "T3",  section: "Main Floor",    capacity: 4, status: "available", covers_seated: 0, seated_at: null,    server: null,        order_value: 0,   order_status: null },
+  { id: "t4",  name: "T4",  section: "Main Floor",    capacity: 6, status: "reserved",  covers_seated: 0, seated_at: null,    server: null,        order_value: 0,   order_status: null, reserved_at: "20:00", reserved_name: "Müller" },
+  { id: "t5",  name: "T5",  section: "Main Floor",    capacity: 2, status: "occupied",  covers_seated: 2, seated_at: "19:20", server: "Anna S.",   order_value: 112, order_status: "dessert" },
+  { id: "t6",  name: "T6",  section: "Main Floor",    capacity: 4, status: "needs_cleaning", covers_seated: 0, seated_at: null, server: null,      order_value: 0,   order_status: null },
+  { id: "t7",  name: "T7",  section: "Main Floor",    capacity: 2, status: "available", covers_seated: 0, seated_at: null,    server: null,        order_value: 0,   order_status: null },
+  { id: "t8",  name: "T8",  section: "Main Floor",    capacity: 8, status: "occupied",  covers_seated: 7, seated_at: "18:30", server: "Max K.",    order_value: 420, order_status: "mains" },
+  // Terrace
+  { id: "t9",  name: "T9",  section: "Terrace",       capacity: 2, status: "available", covers_seated: 0, seated_at: null,    server: null,        order_value: 0,   order_status: null },
+  { id: "t10", name: "T10", section: "Terrace",       capacity: 4, status: "occupied",  covers_seated: 3, seated_at: "19:35", server: "Lena B.",   order_value: 134, order_status: "starters" },
+  { id: "t11", name: "T11", section: "Terrace",       capacity: 4, status: "reserved",  covers_seated: 0, seated_at: null,    server: null,        order_value: 0,   order_status: null, reserved_at: "20:30", reserved_name: "Schmidt" },
+  { id: "t12", name: "T12", section: "Terrace",       capacity: 2, status: "available", covers_seated: 0, seated_at: null,    server: null,        order_value: 0,   order_status: null },
+  // Private Dining
+  { id: "t13", name: "PDR", section: "Private Dining", capacity: 12, status: "occupied", covers_seated: 10, seated_at: "18:00", server: "Lena B.", order_value: 980, order_status: "mains" },
+  { id: "t14", name: "Bar", section: "Bar",             capacity: 8,  status: "occupied", covers_seated: 5,  seated_at: "19:50", server: "Tom H.",   order_value: 210, order_status: "drinks" },
+];
+
+// POS Live Orders
+export const DEMO_LIVE_ORDERS = [
+  {
+    id: "o1", table: "T2", covers: 4, server: "Max K.", status: "new",
+    ordered_at: "19:28", elapsed_min: 3,
+    items: [
+      { name: "Salmon Tartare", qty: 2, price: 18, course: "starter" },
+      { name: "Beef Tenderloin", qty: 1, price: 38, course: "main" },
+      { name: "Truffle Tagliatelle", qty: 1, price: 28, course: "main" },
+    ],
+    special_notes: "1× gluten-free pasta",
+    total: 102,
+  },
+  {
+    id: "o2", table: "T10", covers: 3, server: "Lena B.", status: "new",
+    ordered_at: "19:40", elapsed_min: 1,
+    items: [
+      { name: "Burrata & Prosciutto", qty: 3, price: 16, course: "starter" },
+    ],
+    special_notes: "",
+    total: 48,
+  },
+  {
+    id: "o3", table: "T8", covers: 7, server: "Max K.", status: "kitchen",
+    ordered_at: "18:52", elapsed_min: 24,
+    items: [
+      { name: "Beef Tenderloin", qty: 3, price: 38, course: "main" },
+      { name: "Sea Bass en Papillote", qty: 2, price: 34, course: "main" },
+      { name: "Mushroom Risotto", qty: 2, price: 24, course: "main" },
+    ],
+    special_notes: "2× medium-rare, 1× well done",
+    total: 262,
+  },
+  {
+    id: "o4", table: "PDR", covers: 10, server: "Lena B.", status: "kitchen",
+    ordered_at: "18:35", elapsed_min: 41,
+    items: [
+      { name: "Truffle Tagliatelle", qty: 4, price: 28, course: "main" },
+      { name: "Beef Tenderloin", qty: 3, price: 38, course: "main" },
+      { name: "Sea Bass en Papillote", qty: 3, price: 34, course: "main" },
+    ],
+    special_notes: "Pre-paid event — invoice to Siemens AG",
+    total: 328,
+  },
+  {
+    id: "o5", table: "T1", covers: 2, server: "Anna S.", status: "ready",
+    ordered_at: "19:05", elapsed_min: 36,
+    items: [
+      { name: "Crème Brûlée", qty: 1, price: 12, course: "dessert" },
+      { name: "Tiramisu", qty: 1, price: 11, course: "dessert" },
+    ],
+    special_notes: "",
+    total: 23,
+  },
+  {
+    id: "o6", table: "T5", covers: 2, server: "Anna S.", status: "ready",
+    ordered_at: "19:38", elapsed_min: 3,
+    items: [
+      { name: "Chocolate Fondant", qty: 2, price: 13, course: "dessert" },
+      { name: "Espresso", qty: 2, price: 4, course: "drinks" },
+    ],
+    special_notes: "",
+    total: 34,
+  },
+  {
+    id: "o7", table: "Bar", covers: 5, server: "Tom H.", status: "kitchen",
+    ordered_at: "19:52", elapsed_min: 2,
+    items: [
+      { name: "Charcuterie Board", qty: 2, price: 22, course: "starter" },
+      { name: "Truffle Fries", qty: 1, price: 9, course: "sides" },
+    ],
+    special_notes: "",
+    total: 53,
+  },
+];
+
+// POS Menu
+export const DEMO_MENU_CATEGORIES = ["Starters", "Pasta", "Mains", "Sides", "Desserts", "Beverages"];
+
+export const DEMO_MENU_ITEMS = [
+  // Starters
+  { id: "mi1",  category: "Starters",   name: "Salmon Tartare",           price: 18, allergens: ["fish"],               active: true,  sold_today: 24, food_cost_pct: 28 },
+  { id: "mi2",  category: "Starters",   name: "Burrata & Prosciutto",     price: 16, allergens: ["dairy"],              active: true,  sold_today: 18, food_cost_pct: 32 },
+  { id: "mi3",  category: "Starters",   name: "Wild Mushroom Velouté",    price: 12, allergens: ["dairy", "celery"],    active: true,  sold_today: 11, food_cost_pct: 22 },
+  { id: "mi4",  category: "Starters",   name: "Beef Carpaccio",           price: 20, allergens: ["beef", "mustard"],    active: true,  sold_today: 9,  food_cost_pct: 35 },
+  { id: "mi5",  category: "Starters",   name: "Charcuterie Board",        price: 22, allergens: ["pork", "mustard"],    active: true,  sold_today: 14, food_cost_pct: 30 },
+  // Pasta
+  { id: "mi6",  category: "Pasta",      name: "Truffle Tagliatelle",      price: 28, allergens: ["gluten", "eggs", "dairy"], active: true, sold_today: 31, food_cost_pct: 29 },
+  { id: "mi7",  category: "Pasta",      name: "Linguine alle Vongole",    price: 26, allergens: ["gluten", "shellfish"], active: true, sold_today: 19, food_cost_pct: 31 },
+  { id: "mi8",  category: "Pasta",      name: "Pappardelle Ragu",         price: 24, allergens: ["gluten", "eggs"],      active: true, sold_today: 16, food_cost_pct: 27 },
+  // Mains
+  { id: "mi9",  category: "Mains",      name: "Beef Tenderloin",          price: 38, allergens: ["beef", "dairy"],      active: true,  sold_today: 28, food_cost_pct: 36 },
+  { id: "mi10", category: "Mains",      name: "Sea Bass en Papillote",    price: 34, allergens: ["fish", "dairy"],      active: true,  sold_today: 22, food_cost_pct: 33 },
+  { id: "mi11", category: "Mains",      name: "Mushroom Risotto (v)",     price: 24, allergens: ["dairy"],              active: true,  sold_today: 15, food_cost_pct: 24 },
+  { id: "mi12", category: "Mains",      name: "Rack of Lamb",             price: 42, allergens: ["lamb", "dairy"],      active: true,  sold_today: 12, food_cost_pct: 38 },
+  { id: "mi13", category: "Mains",      name: "Rotisserie Chicken",       price: 28, allergens: ["poultry"],            active: true,  sold_today: 20, food_cost_pct: 28 },
+  // Sides
+  { id: "mi14", category: "Sides",      name: "Truffle Fries",            price: 9,  allergens: ["gluten"],             active: true,  sold_today: 38, food_cost_pct: 18 },
+  { id: "mi15", category: "Sides",      name: "Seasonal Vegetables",      price: 7,  allergens: [],                     active: true,  sold_today: 24, food_cost_pct: 20 },
+  { id: "mi16", category: "Sides",      name: "Creamed Spinach",          price: 8,  allergens: ["dairy"],              active: false, sold_today: 0,  food_cost_pct: 22 },
+  // Desserts
+  { id: "mi17", category: "Desserts",   name: "Crème Brûlée",             price: 12, allergens: ["dairy", "eggs"],      active: true,  sold_today: 20, food_cost_pct: 20 },
+  { id: "mi18", category: "Desserts",   name: "Chocolate Fondant",        price: 13, allergens: ["gluten", "dairy", "eggs"], active: true, sold_today: 18, food_cost_pct: 24 },
+  { id: "mi19", category: "Desserts",   name: "Tiramisu",                 price: 11, allergens: ["dairy", "eggs", "gluten"], active: true, sold_today: 15, food_cost_pct: 22 },
+  { id: "mi20", category: "Desserts",   name: "Cheese Board (3 types)",   price: 16, allergens: ["dairy", "nuts"],      active: true,  sold_today: 10, food_cost_pct: 35 },
+  // Beverages
+  { id: "mi21", category: "Beverages",  name: "Riesling Kabinett 0.75L",  price: 38, allergens: ["sulphites"],          active: true,  sold_today: 22, food_cost_pct: 28 },
+  { id: "mi22", category: "Beverages",  name: "Champagne Brut NV 0.75L",  price: 68, allergens: ["sulphites"],          active: true,  sold_today: 8,  food_cost_pct: 32 },
+  { id: "mi23", category: "Beverages",  name: "San Pellegrino 1L",        price: 6,  allergens: [],                     active: true,  sold_today: 48, food_cost_pct: 15 },
+  { id: "mi24", category: "Beverages",  name: "Espresso",                 price: 4,  allergens: [],                     active: true,  sold_today: 62, food_cost_pct: 10 },
+];
+
+// POS Inventory
+export const DEMO_INVENTORY = [
+  { id: "inv1",  name: "Atlantic Salmon (1kg)",         category: "Proteins",    stock: 4,    par: 20,  unit: "kg",    daily_usage: 2.1,  status: "critical", idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=lachs+filet+frisch+1kg" },
+  { id: "inv2",  name: "Beef Tenderloin (500g)",        category: "Proteins",    stock: 12,   par: 30,  unit: "pcs",   daily_usage: 3.2,  status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=rinderfilet+500g" },
+  { id: "inv3",  name: "Free-Range Chicken (whole)",    category: "Proteins",    stock: 9,    par: 20,  unit: "pcs",   daily_usage: 1.1,  status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=freiland+huhn+ganz" },
+  { id: "inv4",  name: "Sea Bass Fillet (1kg)",         category: "Proteins",    stock: 18,   par: 15,  unit: "kg",    daily_usage: 1.4,  status: "ok",       idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=wolfsbarsch+filet+1kg" },
+  { id: "inv5",  name: "Lamb Rack (French trimmed)",    category: "Proteins",    stock: 8,    par: 10,  unit: "pcs",   daily_usage: 1.0,  status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=lammracks+französisch" },
+  { id: "inv6",  name: "Microgreens Mixed (100g)",      category: "Produce",     stock: 6,    par: 20,  unit: "trays", daily_usage: 2.0,  status: "critical", idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=microgreens+gemischt+100g" },
+  { id: "inv7",  name: "Black Truffle (100g)",          category: "Produce",     stock: 0,    par: 15,  unit: "units", daily_usage: 0,    status: "critical", idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=schwarzer+trüffel+frisch+100g" },
+  { id: "inv8",  name: "Seasonal Vegetables (mixed)",   category: "Produce",     stock: 12,   par: 10,  unit: "kg",    daily_usage: 1.2,  status: "ok",       idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=gemüse+gemischt+kg" },
+  { id: "inv9",  name: "Heavy Cream 35% (1L)",          category: "Dairy",       stock: 8,    par: 24,  unit: "pcs",   daily_usage: 2.0,  status: "critical", idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=sahne+35+prozent+1l" },
+  { id: "inv10", name: "Parmigiano Reggiano (1kg)",     category: "Dairy",       stock: 4,    par: 8,   unit: "kg",    daily_usage: 0.15, status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=parmigiano+reggiano+24+monate+1kg" },
+  { id: "inv11", name: "Unsalted Butter (250g)",        category: "Dairy",       stock: 20,   par: 40,  unit: "pcs",   daily_usage: 2.0,  status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=butter+ungesalzen+250g" },
+  { id: "inv12", name: "Extra Virgin Olive Oil (5L)",   category: "Dry Goods",   stock: 2,    par: 12,  unit: "tins",  daily_usage: 0.67, status: "critical", idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=olivenöl+extra+vergine+5l" },
+  { id: "inv13", name: "Callebaut Dark Choc 70% (2.5kg)", category: "Dry Goods", stock: 3,    par: 8,   unit: "blocks",daily_usage: 0.14, status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=callebaut+70+prozent+2.5kg" },
+  { id: "inv14", name: "Truffle Tagliatelle 5kg",       category: "Dry Goods",   stock: 8,    par: 10,  unit: "packs", daily_usage: 0.56, status: "ok",       idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=pasta+5kg+semolina" },
+  { id: "inv15", name: "Arborio Rice (1kg)",            category: "Dry Goods",   stock: 12,   par: 10,  unit: "packs", daily_usage: 0.3,  status: "ok",       idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=arborio+reis+1kg" },
+  { id: "inv16", name: "Riesling Kabinett (case/6)",    category: "Beverages",   stock: 12,   par: 20,  unit: "cases", daily_usage: 0.6,  status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=riesling+kabinett+weinkarton" },
+  { id: "inv17", name: "Champagne Brut NV (case/6)",    category: "Beverages",   stock: 5,    par: 12,  unit: "cases", daily_usage: 0.07, status: "low",      idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=champagne+brut+nv+weinkarton" },
+  { id: "inv18", name: "San Pellegrino 1L (case/24)",   category: "Beverages",   stock: 14,   par: 10,  unit: "cases", daily_usage: 0.43, status: "ok",       idealo_url: "https://www.idealo.de/preisvergleich/MainSearchProductCategory.html?q=san+pellegrino+1l+kiste" },
+];
+
+// POS Staff
+export const DEMO_STAFF = [
+  { id: "st1", name: "Anna Schmidt",  role: "Head Waiter",  status: "on_shift", tables: ["T1", "T5"],        sales_today: 1840, covers_today: 32, shift: "16:00–00:00" },
+  { id: "st2", name: "Max König",     role: "Waiter",       status: "on_shift", tables: ["T2", "T8"],        sales_today: 2140, covers_today: 44, shift: "16:00–00:00" },
+  { id: "st3", name: "Lena Bauer",    role: "Waiter",       status: "on_shift", tables: ["T10", "T11", "PDR"], sales_today: 3280, covers_today: 56, shift: "17:00–01:00" },
+  { id: "st4", name: "Tom Huber",     role: "Bartender",    status: "on_shift", tables: ["Bar"],             sales_today: 940,  covers_today: 28, shift: "17:00–02:00" },
+  { id: "st5", name: "Sara Meier",    role: "Host",         status: "on_shift", tables: [],                  sales_today: 0,    covers_today: 0,  shift: "17:00–23:00" },
+  { id: "st6", name: "Klaus Weber",   role: "Head Chef",    status: "kitchen",  tables: [],                  sales_today: 0,    covers_today: 0,  shift: "14:00–00:00" },
+  { id: "st7", name: "Petra Lang",    role: "Sous Chef",    status: "kitchen",  tables: [],                  sales_today: 0,    covers_today: 0,  shift: "15:00–23:00" },
+  { id: "st8", name: "Jonas Roth",    role: "Waiter",       status: "off_shift", tables: [],                 sales_today: 820,  covers_today: 18, shift: "11:00–17:00" },
+];
+
+// POS Z-Report (today)
+export const DEMO_Z_REPORT = {
+  date: "2026-11-27",
+  venue: "Mitte Fine Dining",
+  shift: "Evening",
+  covers: 94,
+  avg_check: 51.28,
+  total_revenue: 4820,
+  food_revenue: 3140,
+  beverage_revenue: 1240,
+  other_revenue: 440,
+  payments: {
+    card: 3890,
+    cash: 420,
+    voucher: 510,
+  },
+  vat: {
+    vat_7_base: 3429, vat_7_amount: 240,
+    vat_19_base: 4014, vat_19_amount: 762,
+  },
+  discounts: 180,
+  voids: 24,
+  refunds: 0,
+  table_turns: 2.1,
+  avg_cover_time_min: 68,
+};
+
+// Hourly sales today
+export const DEMO_HOURLY_SALES = [
+  { hour: "11:00", revenue: 180,  covers: 4  },
+  { hour: "12:00", revenue: 620,  covers: 18 },
+  { hour: "13:00", revenue: 840,  covers: 22 },
+  { hour: "14:00", revenue: 420,  covers: 10 },
+  { hour: "15:00", revenue: 140,  covers: 4  },
+  { hour: "16:00", revenue: 80,   covers: 2  },
+  { hour: "17:00", revenue: 220,  covers: 6  },
+  { hour: "18:00", revenue: 980,  covers: 24 },
+  { hour: "19:00", revenue: 1240, covers: 28 },
+  { hour: "20:00", revenue: 1180, covers: 26 },
+  { hour: "21:00", revenue: 820,  covers: 18 },
+  { hour: "22:00", revenue: 420,  covers: 10 },
+];
