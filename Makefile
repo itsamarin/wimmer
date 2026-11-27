@@ -1,4 +1,4 @@
-.PHONY: demo seed api web dev help
+.PHONY: demo seed seed-restaurant api web dev help
 
 API_DIR   := apps/api
 WEB_DIR   := apps/web
@@ -7,15 +7,20 @@ UVICORN   := $(API_DIR)/.venv/bin/uvicorn
 
 help:
 	@echo ""
-	@echo "  make seed   — seed the demo database"
-	@echo "  make api    — start the FastAPI backend  (port 8000)"
-	@echo "  make web    — start the Next.js frontend (port 3000)"
-	@echo "  make demo   — seed + start both servers"
+	@echo "  make seed             — seed hotel demo (Wimmer Hotels Group)"
+	@echo "  make seed-restaurant  — seed restaurant demo (Gastro Berlin Group)"
+	@echo "  make api              — start the FastAPI backend  (port 8000)"
+	@echo "  make web              — start the Next.js frontend (port 3000)"
+	@echo "  make demo             — seed both + start servers"
 	@echo ""
 
 seed:
-	@echo "Seeding demo data..."
+	@echo "Seeding hotel demo data..."
 	@cd $(API_DIR) && $(PYTHON) scripts/seed_demo.py
+
+seed-restaurant:
+	@echo "Seeding restaurant demo data..."
+	@cd $(API_DIR) && $(PYTHON) scripts/seed_restaurant_demo.py
 
 api:
 	@cd $(API_DIR) && $(UVICORN) wimmer.main:app --reload --port 8000

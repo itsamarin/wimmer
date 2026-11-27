@@ -5,8 +5,10 @@ echo "==> Running Alembic migrations..."
 alembic upgrade head
 
 if [ "${SEED_DEMO:-false}" = "true" ]; then
-  echo "==> Seeding demo data..."
+  echo "==> Seeding hotel demo data..."
   python scripts/seed_demo.py
+  echo "==> Seeding restaurant demo data..."
+  python scripts/seed_restaurant_demo.py
 fi
 
 echo "==> Starting Wimmer API..."
