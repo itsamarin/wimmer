@@ -4,11 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard, Building2, TrendingUp, BarChart3,
-  DollarSign, Users2, Brain, FileText, Settings, ChevronRight
+  DollarSign, Users2, Brain, FileText, Settings, ChevronRight,
+  Utensils, ShoppingCart
 } from "lucide-react";
 
 const navItems = [
   { label: "Overview", href: "/overview", icon: LayoutDashboard },
+  { label: "Customer", href: "/customer", icon: Utensils },
+  { label: "Supplier", href: "/supplier", icon: ShoppingCart },
   { label: "Properties", href: "/properties", icon: Building2 },
   { label: "Intelligence", href: "/intelligence", icon: TrendingUp },
   { label: "Forecast", href: "/forecast", icon: BarChart3 },
