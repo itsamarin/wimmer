@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Wimmer — Intelligence Beyond Seasons",
-  description: "AI-powered seasonal business intelligence and decision platform for hospitality businesses.",
+  title: "Wimmer POS — Smart Procurement via idealo.de",
+  description: "The hospitality POS that detects what you need and always reorders via idealo.de — at the best market price.",
   icons: { icon: "/favicon.ico" },
 };
 

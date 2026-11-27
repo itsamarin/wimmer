@@ -62,7 +62,7 @@ export function ProcurementDecisionsPanel() {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Brain className="w-4 h-4 text-orange-500" />
-            <h3 className="text-sm font-semibold text-slate-900">AI Procurement Decisions</h3>
+            <h3 className="text-sm font-semibold text-slate-900">POS-Triggered Reorders via idealo.de</h3>
           </div>
           <div className="flex items-center gap-2">
             {criticalCount > 0 && (
@@ -301,7 +301,7 @@ export function ProcurementDecisionsPanel() {
             {approvedCount} order{approvedCount > 1 ? "s" : ""} placed · €{approvedSpend.toLocaleString("de-DE")} committed
           </span>
           <span className="text-xs text-emerald-600">
-            Session total saved vs contracts: €{DEMO_PROCUREMENT_DECISIONS
+            idealo.de savings vs current contracts: €{DEMO_PROCUREMENT_DECISIONS
               .filter(d => statuses[d.id] === "approved")
               .reduce((s, d) => s + idealoSaving(d), 0)
               .toLocaleString("de-DE")} via idealo.de

@@ -9,7 +9,7 @@ import { PropertiesGrid } from "@/components/dashboard/PropertiesGrid";
 export default function OverviewPage() {
   return (
     <div className="flex flex-col h-full">
-      <Header title="Portfolio Overview" subtitle="Performance across all properties" />
+      <Header title="POS Dashboard" subtitle="Live performance · AI procurement via idealo.de" />
       <div className="flex-1 p-6 space-y-6 overflow-y-auto">
         <DemoBanner />
         <KpiCards />

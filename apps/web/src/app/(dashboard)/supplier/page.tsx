@@ -24,8 +24,8 @@ function IdealoProfit() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-white bg-opacity-20 flex items-center justify-center font-black text-lg">i</div>
           <div>
-            <div className="font-bold text-base leading-tight">You make profit from idealo.de</div>
-            <div className="text-emerald-200 text-xs mt-0.5">Direct orders via idealo.de are your most profitable channel</div>
+            <div className="font-bold text-base leading-tight">Wimmer POS always orders via idealo.de</div>
+            <div className="text-emerald-200 text-xs mt-0.5">Every POS-triggered reorder goes through idealo.de — guaranteed best market price</div>
           </div>
         </div>
         <a
@@ -139,7 +139,7 @@ function SupplierKpiCards() {
 export default function SupplierPage() {
   return (
     <div className="flex flex-col h-full">
-      <Header title="Supplier Intelligence" subtitle="Delivery platform analytics — powered by idealo.de" />
+      <Header title="idealo Procurement" subtitle="Wimmer POS reorders always via idealo.de — best price, every time" />
       <div className="flex-1 p-6 space-y-6 overflow-y-auto">
 
         <IdealoProfit />

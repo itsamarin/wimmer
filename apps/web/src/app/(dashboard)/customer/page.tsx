@@ -169,13 +169,13 @@ export default function CustomerPage() {
   const d = DEMO_RESTAURANT_KPI_SUMMARY;
   return (
     <div className="flex flex-col h-full">
-      <Header title="Customer Dashboard" subtitle="Gastro Berlin Group — restaurant performance" />
+      <Header title="Restaurant View" subtitle="Gastro Berlin Group · Wimmer POS live data" />
       <div className="flex-1 p-6 space-y-6 overflow-y-auto">
         <div className="rounded-xl bg-emerald-600 text-white px-5 py-3 flex items-center gap-3">
           <Utensils className="w-5 h-5 text-emerald-200 flex-shrink-0" />
           <div>
-            <span className="text-sm font-semibold">Restaurant Demo — Gastro Berlin Group</span>
-            <span className="text-xs text-emerald-200 ml-2">3 restaurants · Berlin, Hamburg, Munich</span>
+            <span className="text-sm font-semibold">Wimmer POS — Gastro Berlin Group</span>
+            <span className="text-xs text-emerald-200 ml-2">3 restaurants · Berlin, Hamburg, Munich · procurement via idealo.de</span>
           </div>
         </div>
 
