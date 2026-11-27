@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { RecommendationsPanel } from "@/components/dashboard/RecommendationsPanel";
 import { DemoBanner } from "@/components/dashboard/DemoBanner";
+import { AIReorderReminder } from "@/components/dashboard/AIReorderReminder";
 import { DEMO_INVENTORY, DEMO_TABLES, DEMO_MENU_ITEMS } from "@/lib/demo-data";
 import { AlertTriangle, Clock, TrendingDown, ExternalLink } from "lucide-react";
 
@@ -30,6 +31,9 @@ export default function DecisionsPage() {
       <Header title="Smart Orders" subtitle="AI-driven decisions for procurement, menu, and floor management" />
       <div className="flex-1 p-6 space-y-6 overflow-y-auto">
         <DemoBanner />
+
+        <AIReorderReminder />
+
         <div className="grid grid-cols-3 gap-6 items-start">
 
           {/* Left: recommendations + POS alerts */}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { DemoBanner } from "@/components/dashboard/DemoBanner";
+import { AIReorderReminder } from "@/components/dashboard/AIReorderReminder";
 import { DEMO_INVENTORY } from "@/lib/demo-data";
 import { ExternalLink } from "lucide-react";
 
@@ -58,6 +59,8 @@ export default function InventoryPage() {
       <Header title="Inventory & Stock" subtitle="Real-time stock levels with idealo.de ordering" />
       <div className="flex-1 p-6 space-y-5 overflow-y-auto">
         <DemoBanner />
+
+        <AIReorderReminder />
 
         {/* Summary cards */}
         <div className="grid grid-cols-4 gap-4">
